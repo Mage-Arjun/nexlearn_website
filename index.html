@@ -10,21 +10,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231D4FE8'/%3E%3Cpath d='M9.5 23V9.5L22.5 22.5V9' fill='none' stroke='%23FFFFFF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=3">
 </head>
 <body>
 <header class="site-head">
-  <div class="wrap">
-    <a class="brand" href="#top" aria-label="Nexlearn home">
-      <img class="brand-mark" src="assets/img/nexlearn-logo.svg" alt="Nexlearn logo" width="32" height="32">
-    </a>
+  <div class="pn-wrap">
+    <a class="pn-logo" href="#top" aria-label="Nexlearn home"><img src="assets/img/nexlearn-mark.png" alt="Nexlearn logo" width="44" height="44"></a>
+    <a class="pn-brand" href="#top" aria-hidden="true" tabindex="-1">Nex<b>learn</b></a>
     <nav class="pill-nav" aria-label="Main">
-      <a href="#erpnext" class="active">ERPNext</a>
-      <a href="#programmes">Programmes</a>
-      <a href="#curriculum">Curriculum</a>
-      <a href="#faculty">Faculty</a>
-      <a href="#placement">Placement</a>
-      <a href="#enquire" class="pill-cta">Enquire</a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-list"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
+      <ul class="pill-list" id="nav-list">
+        <li><a href="#erpnext" class="pill-item active"><span class="hover-circle" aria-hidden="true"></span><span class="label">ERPNext</span></a></li>
+        <li><a href="#programmes" class="pill-item"><span class="hover-circle" aria-hidden="true"></span><span class="label">Programmes</span></a></li>
+        <li><a href="#curriculum" class="pill-item"><span class="hover-circle" aria-hidden="true"></span><span class="label">Curriculum</span></a></li>
+        <li><a href="#faculty" class="pill-item"><span class="hover-circle" aria-hidden="true"></span><span class="label">Faculty</span></a></li>
+        <li><a href="#placement" class="pill-item"><span class="hover-circle" aria-hidden="true"></span><span class="label">Placement</span></a></li>
+        <li><a href="#enquire" class="pill-item pill-cta"><span class="hover-circle" aria-hidden="true"></span><span class="label">Enquire</span></a></li>
+      </ul>
     </nav>
   </div>
 </header>

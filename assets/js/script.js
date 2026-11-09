@@ -162,3 +162,58 @@
     });
   }
 })();
+
+(function () {
+  // Mobile collapse + open/close
+  var toggle = document.querySelector(".nav-toggle");
+  var list = document.getElementById("nav-list");
+  if (toggle && list) {
+    toggle.addEventListener("click", function () {
+      var open = list.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open);
+    });
+    // Close on item click
+    list.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        list.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  // Active state on scroll (activeHref behavior)
+  var navLinks = document.querySelectorAll(".pill-item");
+  var sections = {};
+  navLinks.forEach(function (link) {
+    var id = link.getAttribute("href");
+    if (id && id.startsWith("#")) {
+      sections[id] = document.querySelector(id);
+    }
+  });
+  function setActive() {
+    var fromTop = window.scrollY + 120;
+    var current = null;
+    for (var id in sections) {
+      var el = sections[id];
+      if (el && el.offsetTop <= fromTop && el.offsetTop + el.offsetHeight > fromTop) {
+        current = id;
+      }
+    }
+    navLinks.forEach(function (link) {
+      link.classList.toggle("active", link.getAttribute("href") === current);
+    });
+  }
+  window.addEventListener("scroll", setActive);
+  setActive();
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener("click", function (e) {
+      var target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+})();
