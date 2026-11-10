@@ -1,24 +1,37 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="claude:viewport-fit-sides" content="cover">
+  <meta name="theme-color" content="#040A18">
+  <meta name="color-scheme" content="dark">
   <meta name="description" content="Nexlearn — ERPNext professional programmes. Two 3-month online tracks: ERPNext Functional Learning and ERPNext Development. Live classes, real business scenarios, placement assistance.">
   <title>Nexlearn · ERPNext Professional Programmes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231D4FE8'/%3E%3Cpath d='M9.5 23V9.5L22.5 22.5V9' fill='none' stroke='%23FFFFFF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="assets/css/style.css?v=3">
+  <link rel="stylesheet" href="assets/css/style.css?v=4">
 </head>
 <body>
+<div class="fibers-bg" id="fibers-bg" aria-hidden="true"></div>
+<div class="edge-blur edge-blur--top" aria-hidden="true">
+  <div class="eb-layer" style="--blur:5px"></div>
+  <div class="eb-layer" style="--blur:14px"></div>
+  <div class="eb-layer" style="--blur:28px"></div>
+</div>
+<div class="edge-blur edge-blur--bottom" aria-hidden="true">
+  <div class="eb-layer" style="--blur:5px"></div>
+  <div class="eb-layer" style="--blur:14px"></div>
+  <div class="eb-layer" style="--blur:28px"></div>
+</div>
 <header class="site-head">
   <div class="pn-wrap">
     <a class="pn-logo" href="#top" aria-label="Nexlearn home"><img src="assets/img/nexlearn-mark.png" alt="Nexlearn logo" width="44" height="44"></a>
     <a class="pn-brand" href="#top" aria-hidden="true" tabindex="-1">Nex<b>learn</b></a>
     <nav class="pill-nav" aria-label="Main">
-      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-list"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-panel"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
       <ul class="pill-list" id="nav-list">
         <li><a href="#erpnext" class="pill-item active"><span class="hover-circle" aria-hidden="true"></span><span class="label">ERPNext</span></a></li>
         <li><a href="#programmes" class="pill-item"><span class="hover-circle" aria-hidden="true"></span><span class="label">Programmes</span></a></li>
@@ -28,6 +41,25 @@
         <li><a href="#enquire" class="pill-item pill-cta"><span class="hover-circle" aria-hidden="true"></span><span class="label">Enquire</span></a></li>
       </ul>
     </nav>
+
+    <div class="staggered-menu" id="nav-panel" aria-hidden="true">
+      <div class="sm-scrim" aria-hidden="true"></div>
+      <div class="sm-prelayers" aria-hidden="true">
+        <div class="sm-prelayer" style="background: var(--band-accent)"></div>
+        <div class="sm-prelayer" style="background: rgba(108, 151, 255, 0.30)"></div>
+        <div class="sm-prelayer" style="background: var(--band-line)"></div>
+      </div>
+      <div class="sm-panel">
+        <ul class="sm-list" role="list">
+          <li><a href="#erpnext" class="sm-item" data-index="01"><span class="sm-label">ERPNext</span></a></li>
+          <li><a href="#programmes" class="sm-item" data-index="02"><span class="sm-label">Programmes</span></a></li>
+          <li><a href="#curriculum" class="sm-item" data-index="03"><span class="sm-label">Curriculum</span></a></li>
+          <li><a href="#faculty" class="sm-item" data-index="04"><span class="sm-label">Faculty</span></a></li>
+          <li><a href="#placement" class="sm-item" data-index="05"><span class="sm-label">Placement</span></a></li>
+          <li><a href="#enquire" class="sm-item sm-item-cta" data-index="06"><span class="sm-label">Enquire</span></a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -45,7 +77,9 @@
           </div>
         </div>
 
-        <figure class="flow" style="margin:0" aria-label="Sample ERPNext document flow from customer enquiry to payment">
+        <div class="hero-visual">
+          <img class="hero-art" src="assets/img/art/hero-dashboard.svg" width="640" height="410" alt="ERPNext dashboard showing sales growth, invoices and a live class" decoding="async" fetchpriority="high">
+        <figure class="flow" aria-label="Sample ERPNext document flow from customer enquiry to payment">
           <div class="flow-head"><span>Sample document flow</span><span>Sell → Deliver → Bill → Collect</span></div>
           <ol>
             <li class="doc">
@@ -76,6 +110,7 @@
           </ol>
           <figcaption class="flow-foot">Every record links to the one before it. You learn to set up and trace this chain. Sample records shown.</figcaption>
         </figure>
+        </div>
       </div>
 
       <dl class="facts">
@@ -96,13 +131,13 @@
           <p class="lead">ERPNext is an open-source ERP that connects sales, accounting, inventory, manufacturing, projects and human resources on a single system, so every team works from the same records.</p>
         </div>
         <ul class="modules">
-          <li><strong>CRM &amp; Sales</strong><span>Manage leads, customers and sales.</span></li>
-          <li><strong>Purchasing</strong><span>Manage suppliers and procurement.</span></li>
-          <li><strong>Accounting</strong><span>Simplify finance and compliance.</span></li>
-          <li><strong>Stock &amp; Inventory</strong><span>Track and manage inventory in real time.</span></li>
-          <li><strong>Manufacturing</strong><span>Plan production and track quality.</span></li>
-          <li><strong>Human Resources</strong><span>Manage employees and attendance.</span></li>
-          <li><strong>Projects</strong><span>Plan, track and deliver projects.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-crm.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><strong>CRM &amp; Sales</strong><span>Manage leads, customers and sales.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-purchasing.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><strong>Purchasing</strong><span>Manage suppliers and procurement.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-accounting.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><strong>Accounting</strong><span>Simplify finance and compliance.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-stock.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><strong>Stock &amp; Inventory</strong><span>Track and manage inventory in real time.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-manufacturing.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><strong>Manufacturing</strong><span>Plan production and track quality.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-hr.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><strong>Human Resources</strong><span>Manage employees and attendance.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-projects.svg" width="56" height="56" alt="" loading="lazy" decoding="async"><strong>Projects</strong><span>Plan, track and deliver projects.</span></li>
         </ul>
       </div>
 
@@ -166,6 +201,7 @@
 
       <div class="tracks">
         <article class="track" id="functional">
+          <img class="track-art" src="assets/img/art/track-functional.svg" width="640" height="260" alt="Illustration of an ERPNext document workflow from opportunity to invoice and payment" loading="lazy" decoding="async">
           <div>
             <p class="eyebrow">Track 1 · Designed for real-world roles</p>
             <h3>ERPNext Functional Learning</h3>
@@ -183,10 +219,11 @@
             </ul>
           </div>
           <p>You finish by working on a complete ERPNext setup, guided by industry experts, using real business use cases.</p>
-          <a class="btn btn-primary" href="#enquire?track=functional" style="justify-self:start">Enquire about this track</a>
+          <a class="btn btn-primary" href="#enquire" data-track="functional" style="justify-self:start">Enquire about this track</a>
         </article>
 
         <article class="track" id="development">
+          <img class="track-art" src="assets/img/art/track-development.svg" width="640" height="260" alt="Illustration of a code editor next to an ERPNext form" loading="lazy" decoding="async">
           <div>
             <p class="eyebrow">Track 2 · For aspiring developers</p>
             <h3>ERPNext Development Programme</h3>
@@ -212,7 +249,7 @@
         <span class="k">if not</span> self.customer:
             frappe.throw(<span class="s">"Customer is required"</span>)</code></pre>
           <p class="code-cap">The kind of business rule you write in the server scripts module.</p>
-          <a class="btn btn-primary" href="#enquire?track=development" style="justify-self:start">Enquire about this track</a>
+          <a class="btn btn-primary" href="#enquire" data-track="development" style="justify-self:start">Enquire about this track</a>
         </article>
       </div>
 
@@ -330,10 +367,10 @@
           </div>
         </div>
         <ul class="services">
-          <li><strong>Resume building</strong><span>Create a professional resume that highlights your skills and projects.</span></li>
-          <li><strong>Interview preparation</strong><span>Get ready with mock interviews and expert guidance.</span></li>
-          <li><strong>Job opportunities</strong><span>Access opportunities shared by our network of hiring partners.</span></li>
-          <li><strong>Internship support</strong><span>Find internship opportunities to gain real-world experience.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-resume.svg" width="52" height="52" alt="" loading="lazy" decoding="async"><strong>Resume building</strong><span>Create a professional resume that highlights your skills and projects.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-interview.svg" width="52" height="52" alt="" loading="lazy" decoding="async"><strong>Interview preparation</strong><span>Get ready with mock interviews and expert guidance.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-jobs.svg" width="52" height="52" alt="" loading="lazy" decoding="async"><strong>Job opportunities</strong><span>Access opportunities shared by our network of hiring partners.</span></li>
+          <li><img class="ico" src="assets/img/art/icon-internship.svg" width="52" height="52" alt="" loading="lazy" decoding="async"><strong>Internship support</strong><span>Find internship opportunities to gain real-world experience.</span></li>
         </ul>
       </div>
 
@@ -342,9 +379,9 @@
         <h3 style="margin-top:12px">Open to everyone.</h3>
         <p class="lead">No specific academic background is required. Anyone with an interest in ERP, business systems or technology can join.</p>
         <ul class="who-grid">
-          <li><strong>Students</strong><span>Build career-ready skills for better opportunities.</span></li>
-          <li><strong>Working professionals</strong><span>Upskill and upgrade your career.</span></li>
-          <li><strong>Business owners</strong><span>Understand and manage your own business better.</span></li>
+          <li><img class="who-img" src="assets/img/art/who-students.svg" width="480" height="300" alt="Illustration of a student with a laptop, books and a graduation cap" loading="lazy" decoding="async"><strong>Students</strong><span>Build career-ready skills for better opportunities.</span></li>
+          <li><img class="who-img" src="assets/img/art/who-professionals.svg" width="480" height="300" alt="Illustration of career growth as rising steps" loading="lazy" decoding="async"><strong>Working professionals</strong><span>Upskill and upgrade your career.</span></li>
+          <li><img class="who-img" src="assets/img/art/who-owners.svg" width="480" height="300" alt="Illustration of a shop with a sales counter" loading="lazy" decoding="async"><strong>Business owners</strong><span>Understand and manage your own business better.</span></li>
         </ul>
       </div>
     </div>
@@ -357,6 +394,7 @@
           <p class="eyebrow">Enquiries</p>
           <h2 id="enq-title">Take the next step.</h2>
           <p class="lead">Gain practical ERPNext skills and be ready for real-world opportunities. Call or visit to ask about the Functional Learning and Development tracks.</p>
+          <img class="enquire-art" src="assets/img/art/enquire-art.svg" width="480" height="300" alt="Illustration of enquiry confirmation cards and a weekend class calendar" loading="lazy" decoding="async">
           <p class="batch-info">Next batch starts soon · Weekend classes · Fee details shared after you enquire.</p>
         </div>
         <dl class="contact">
@@ -421,6 +459,7 @@
     <span>Delivered with Nexora Fintec and FinRock Academy · Online</span>
   </div>
 </footer>
-  <script src="assets/js/script.js" defer></script>
+  <script src="assets/js/ghost-fibers.js" defer></script>
+  <script src="assets/js/script.js?v=4" defer></script>
 </body>
 </html>

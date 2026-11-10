@@ -1,4 +1,11 @@
 (function () {
+  // Clear history state on load so nothing is restored from a previous entry,
+  // and stop the browser from auto-restoring scroll position.
+  try { history.replaceState(null, document.title, location.href); } catch (e) {}
+  if ("scrollRestoration" in history) { history.scrollRestoration = "manual"; }
+})();
+
+(function () {
   var picks = {
     functional: {
       name: "ERPNext Functional Learning",
@@ -59,7 +66,7 @@
         entry.target.classList.remove("revealed");
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
   document.querySelectorAll(".reveal").forEach(function (el) {
     revealObserver.observe(el);
   });
@@ -166,23 +173,33 @@
 (function () {
   // Mobile collapse + open/close
   var toggle = document.querySelector(".nav-toggle");
-  var list = document.getElementById("nav-list");
-  if (toggle && list) {
+  var panel = document.getElementById("nav-panel");
+  if (toggle && panel) {
+    var scrim = panel.querySelector(".sm-scrim");
+    function closeMenu() {
+      panel.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    }
     toggle.addEventListener("click", function () {
-      var open = list.classList.toggle("open");
+      var open = panel.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open);
+      document.body.style.overflow = open ? "hidden" : "";
     });
     // Close on item click
-    list.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        list.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-      });
+    panel.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", closeMenu);
+    });
+    // Close on scrim click
+    if (scrim) { scrim.addEventListener("click", closeMenu); }
+    // Close on Escape
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && panel.classList.contains("open")) { closeMenu(); }
     });
   }
 
   // Active state on scroll (activeHref behavior)
-  var navLinks = document.querySelectorAll(".pill-item");
+  var navLinks = document.querySelectorAll(".pill-item, .sm-item");
   var sections = {};
   navLinks.forEach(function (link) {
     var id = link.getAttribute("href");
@@ -209,11 +226,63 @@
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener("click", function (e) {
-      var target = document.querySelector(this.getAttribute("href"));
+      var target = null;
+      try { target = document.querySelector(this.getAttribute("href")); } catch (err) {}
+      var wanted = this.getAttribute("data-track");
+      var sel = document.getElementById("enq-track");
+      if (wanted && sel) sel.value = wanted;
       if (target) {
         e.preventDefault();
+        // Replace the history entry instead of pushing, so in-page navigation
+        // does not grow the stack and there is no previous state to load back.
+        try { history.replaceState(null, document.title, this.getAttribute("href")); } catch (e) {}
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
   });
+})();
+
+(function () {
+  // Ghost Fibers WebGL background (fixed behind the whole page)
+  var host = document.getElementById("fibers-bg");
+  if (!host || !window.GhostFibers) return;
+  var small = window.matchMedia("(max-width: 720px)").matches;
+  var coarse = window.matchMedia("(pointer: coarse)").matches;
+  var fibers = null;
+
+  function options() {
+    small = window.matchMedia("(max-width: 720px)").matches;
+    return {
+      glowColor: "#3d6bff",
+      lineColor: "#c3d4ff",
+      secondaryColor: "#8f5eff",
+      gradient: "depth",
+      speed: 0.45,
+      scale: small ? 1.25 : 1,
+      rotation: small ? 62 : 18,
+      layers: small ? 2 : 3,
+      threads: small ? 38 : 72,
+      density: small ? 0.7 : 1,
+      particles: small ? 0.25 : 0.5,
+      glow: 0.75,
+      brightness: 1.2,
+      vignette: 0.45,
+      grain: 0.05,
+      depthOfField: small ? 0.6 : 0.85,
+      mouseInteraction: !coarse,
+      pulseOnClick: !coarse,
+      dpr: small ? 1.25 : Math.min(window.devicePixelRatio || 1, 1.5)
+    };
+  }
+
+  function start() {
+    try { fibers = window.GhostFibers.create(host, options()); } catch (e) { fibers = null; }
+    if (fibers) document.documentElement.classList.add("has-fibers");
+  }
+  start();
+
+  // re-tune when crossing the mobile breakpoint (rotate / resize)
+  var mq = window.matchMedia("(max-width: 720px)");
+  var onChange = function () { if (fibers) fibers.update(options()); };
+  if (mq.addEventListener) mq.addEventListener("change", onChange); else if (mq.addListener) mq.addListener(onChange);
 })();
