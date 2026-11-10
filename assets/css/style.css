@@ -378,6 +378,86 @@ footer { background: var(--band); border-top: 1px solid var(--band-line); }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 
+/* ============ Title Animation ============ */
+@keyframes title-reveal {
+  0% { opacity: 0; transform: translateY(16px) scale(0.97); }
+  60% { transform: scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hero h1 {
+  animation: title-reveal 0.9s ease-out forwards;
+}
+
+/* Centered hero titles on inner pages */
+.center-hero .eyebrow,
+.center-hero .lead,
+.center-hero h1 {
+  text-align: center;
+}
+.center-hero .cta-row {
+  justify-content: center;
+}
+.center-hero .hero-grid > div:first-child {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* WhatsApp pill link */
+.wa-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  padding: 6px 12px;
+  background: #25D366;
+  color: #fff;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.wa-pill svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+.wa-pill:hover {
+  background: #1eb458;
+  filter: brightness(1.05);
+}
+
+/* WhatsApp pill in navbar */
+.pill-wa {
+  background: #25D366 !important;
+  color: #fff !important;
+}
+.pill-wa .label { color: #fff !important; }
+.pill-wa .hover-circle { background: rgba(255,255,255,0.2) !important; }
+.sm-item-wa {
+  background: #25D366;
+  color: #fff;
+  border-radius: 10px;
+  padding: 11px 16px;
+  display: inline-block;
+  font-size: 0.95rem;
+  transform: translateY(30px);
+  transition: transform 0.7s cubic-bezier(0.7, 0, 0.2, 1);
+  transition-delay: 0.64s;
+  text-decoration: none;
+}
+.staggered-menu.open .sm-item-wa { transform: translateY(0); }
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 /* ============ Counter / Count Up ============ */
 .count-up {
   font-variant-numeric: tabular-nums;
@@ -1075,3 +1155,46 @@ footer { background: rgba(4,10,24,.82); }
   -webkit-mask-image: linear-gradient(to top, #000 0%, #0000 60%, #0000 100%);
 }
 @keyframes eb-fade { to { opacity: 1; } }
+
+/* ============ Stroke Text (ReactBits: stroke-text) ============ */
+.stroke-text {
+  display: inline-block;
+  position: relative;
+  line-height: 1;
+}
+.stroke-text__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.stroke-text__stroke {
+  fill: none;
+  stroke: var(--band-accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--stroke-length);
+  stroke-dashoffset: var(--stroke-length);
+}
+.stroke-text__stroke--draw {
+  animation: stroke-draw 1.6s ease forwards;
+}
+@keyframes stroke-draw {
+  to { stroke-dashoffset: 0; }
+}
+.stroke-text__fill {
+  fill: currentColor;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stroke-text__stroke {
+    stroke-dashoffset: 0 !important;
+  }
+  .stroke-text__fill {
+    opacity: 1 !important;
+  }
+}
